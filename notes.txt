@@ -2,5 +2,10 @@ Projects
 - video games, websites, machine learning,
 -
 
+Games
+-snake
+-connect4
+-hangman
+
 Languages
 - Python, Javascript, CSS, HTML
