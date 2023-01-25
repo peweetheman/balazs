@@ -9,6 +9,7 @@ num_lives = 6
 letters_guessed = []  # a set() would be better since a set keeps only unique elements
 while num_lives != 0:
     print('Number of lives remaining: ', num_lives)
+    # check if they have won
     current_word = ''
     for character in random_word:
         if character in letters_guessed:

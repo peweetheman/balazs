@@ -1,0 +1,64 @@
+DROP TABLE User_Information;
+DROP TABLE IF EXISTS Sale_Record;
+CREATE TABLE Sale_Record(Property_ID integer, Sale_Date char(12), Sale_Price integer, PRIMARY KEY(Property_ID, Sale_Date) );
+INSERT INTO UserInformation VALUES (val1, val2, val3);
+SELECT col_name1, col_name2 FROM table_name;
+SELECT * FROM table_name;
+SELECT * FROM User_Information WHERE full_name = "Patrick";
+SELECT * FROM User_Information WHERE Country = "USA";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DROP TABLE IF EXISTS Neighborhood;
+CREATE TABLE Neighborhood(Neighborhood_ID integer, Neighborhood_Name varchar(50), Rating integer CHECK(Rating between 0 and 10), PRIMARY KEY(Neighborhood_ID));
+
+DROP TABLE IF EXISTS School;
+CREATE TABLE School(School_ID integer, School_Name varchar(50), Rating integer CHECK(Rating between 0 and 10), Neighborhood_ID integer, PRIMARY KEY(School_ID), FOREIGN KEY (Neighborhood_ID) REFERENCES Neighborhood(Neighborhood_ID));
+
+DROP TABLE IF EXISTS Auction_Listing;
+CREATE TABLE Auction_Listing(Property_ID integer, Auction_Date char(12), Date_Listed char(12), Initial_Price float, PRIMARY KEY (Property_ID, Auction_Date));
+
+DROP TABLE IF EXISTS Foreclosure_Listing;
+CREATE TABLE Foreclosure_Listing(Property_ID integer, Date_Foreclosed char(12), Tax_Overdue float, PRIMARY KEY(Property_ID));
+
+DROP TABLE IF EXISTS Owner;
+CREATE TABLE Owner(Owner_ID integer, email varchar(50), name varchar(50), phone_number varchar(20), PRIMARY KEY(Owner_ID));
+
+DROP TABLE IF EXISTS Property;
+CREATE TABLE Property(Property_ID integer, Property_Type varchar(50) NOT NULL, Acreage float, Estimated_Value float, Assessed_Value float, Neighborhood_ID integer, Owner_ID integer, PRIMARY KEY (Property_ID), FOREIGN KEY (Neighborhood_ID) REFERENCES Neighborhood(Neighborhood_ID), FOREIGN KEY (Owner_ID) REFERENCES Owner(Owner_ID));
+
+DROP TABLE IF EXISTS Rental_Listing;
+CREATE TABLE Rental_Listing(Listing_ID integer, Date_Listed varchar(12), Monthly_Rent integer, description varchar(1000), IsActive integer NOT NULL, Owner_ID integer, Residential_ID integer, PRIMARY KEY(Listing_ID), FOREIGN KEY (Owner_ID) REFERENCES Owner(Owner_ID), FOREIGN KEY(Residential_ID) REFERENCES Residential_Unit(Residential_ID));
+
+DROP TABLE IF EXISTS Residential_Unit;
+CREATE TABLE Residential_Unit(Residential_ID integer, residential_type varchar(50), Sq_Footage integer, Num_Bedrooms integer, Num_Bathrooms integer, Year_Built integer, Property_ID integer, FOREIGN KEY(Property_ID) REFERENCES Property(Property_ID), PRIMARY KEY (Residential_ID));
+
+DROP TABLE IF EXISTS For_Sale_Listing;
+CREATE TABLE For_Sale_Listing(Listing_ID integer, Date_Listed varchar(12), Listing_Price float, description varchar(1000), IsActive integer NOT NULL, Property_ID integer NOT NULL, Owner_ID integer NOT NULL, Agent_ID, PRIMARY KEY(Listing_ID), FOREIGN KEY (Property_ID) REFERENCES Property(Property_ID), FOREIGN KEY(Agent_ID) REFERENCES Real_Estate_Agent(Agent_ID), FOREIGN KEY (Owner_ID) REFERENCES Owner(Owner_ID));
+
+DROP TABLE IF EXISTS Real_Estate_Brokerage;
+CREATE TABLE Real_Estate_Brokerage(Company_Email varchar(50), Company_Name varchar(50), PRIMARY KEY (Company_Email));
+
+DROP TABLE IF EXISTS Real_Estate_Agent;
+CREATE TABLE Real_Estate_Agent(Agent_ID integer, email varchar(50), name varchar(50), Company_Email varchar(50), PRIMARY KEY (Agent_ID), FOREIGN KEY (Company_Email) REFERENCES Real_Estate_Brokerage(Company_Email));
+
+DROP TABLE IF EXISTS Real_Estate_Agent;
+CREATE TABLE Real_Estate_Agent(Agent_ID integer, email varchar(50), name varchar(50), Company_Email varchar(50), PRIMARY KEY (Agent_ID), FOREIGN KEY (Company_Email) REFERENCES Real_Estate_Brokerage(Company_Email));
+
+DROP TABLE IF EXISTS Property_Log;
+CREATE TABLE Property_Log(Entry_ID, Change_Type varchar(30), Change_Details varchar(100), PRIMARY KEY (entry_ID));
+
+DROP TABLE IF EXISTS Rental_Opportunity;
+CREATE TABLE Rental_Opportunity(Opportunity_ID, Listing_ID, Monthly_Rent, PRIMARY KEY (Opportunity_ID), FOREIGN KEY (Listing_ID) REFERENCES Rental_Listing(Listing_ID));
