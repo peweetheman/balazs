@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Title here</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" type="text/css" href="homepage.css" />-->
+
+</head>
+<body>
+<div>
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 4</a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-red w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">Edit Title</h1>
+  <p class="w3-xlarge">...................</p>
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>Search Current Users</h1>
+
+
+      <form id="SearchForm" method="POST" action="/SearchUser")>
+          <input style="display: none;" id="SearchButton" type="submit" value="Search Data: ">
+          <div class="form__group field">
+              Search Data:
+            <input type="text" class="form__field" placeholder="Search Data" name="SearchData" id='SearchData' required />
+          </div>
+      </form>
+
+
+        <div id="Results">
+            <!--SearchResults-->
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>Scan document</h1>
+      <h5 class="w3-padding-32">You can edit this part</h5>
+
+      <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Scan document</button>
+    </div>
+
+    <div class="w3-third w3-center">
+      <i class="fa fa-file-photo-o w3-padding-64 w3-text-red"></i>
+    </div>
+  </div>
+</div>
+
+<!-- Second Grid -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-third w3-center">
+      <i class="fa fa-keyboard-o w3-padding-64 w3-text-red w3-margin-right"></i>
+    </div>
+
+    <div class="w3-twothird">
+      <h1>Lorem Ipsum</h1>
+      <h5 class="w3-padding-32">Type your information here.</h5>
+      <div>
+          <form id="input_form" method="POST" action="/InsertUser")>
+          <label for="Name">Full name:</label><br>
+          <input type="text" id="name" name="Name"><br>
+          <label for="Country">Country:</label><br>
+          <input type="Country" id="Country" name="Country"><br>
+          <label for="Work">Work:</label><br>
+          <input type="Work" id="Work" name="Work"><br>
+          <input type="submit" value="Submit">
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
+    <h1 class="w3-margin w3-xlarge">You can whrite what you want here</h1>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>
+ <p>Powered by Balázs endzsin</p>
+</footer>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// Get the search box input field
+var searchInput = document.getElementById("SearchData");
+
+// Execute a function when the user presses a key on the keyboard
+searchInput.addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("SearchButton").click();
+  }
+});
+</script>
+
+</body>
+</html>
